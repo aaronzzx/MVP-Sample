@@ -35,6 +35,7 @@ public class MainPresenter implements IMainPresenter {
                         mMainView.load(data);
                         Toast.makeText(context, "加载完成", Toast.LENGTH_SHORT).show();
                         mMainView.clearInput();
+                        mMainModel.clearData(context);
                     }
                 });
             }

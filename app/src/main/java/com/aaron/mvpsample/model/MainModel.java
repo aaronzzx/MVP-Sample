@@ -30,7 +30,6 @@ public class MainModel implements IMainModel {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                clearData(context);
                 SharedPreferences preferences = context.getSharedPreferences
                         ("data", Context.MODE_PRIVATE);
                 String get = preferences.getString("input", null);
@@ -49,5 +48,6 @@ public class MainModel implements IMainModel {
         SharedPreferences.Editor editor = context.getSharedPreferences
                 ("data", Context.MODE_PRIVATE).edit();
         editor.clear();
+        editor.apply();
     }
 }
