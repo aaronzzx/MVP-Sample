@@ -1,11 +1,11 @@
 package com.aaron.mvpsample.view;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aaron.mvpsample.R;
@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private IMainPresenter mMainPresenter;
     private TextView mData;
-    private ProgressBar mProgress;
     private EditText mInput;
     private Button mSave, mLoad;
+    private ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +31,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private void initView() {
         mData = findViewById(R.id.main_data);
-        mProgress = findViewById(R.id.main_progress);
         mInput = findViewById(R.id.main_input);
         mSave = findViewById(R.id.main_save);
         mLoad = findViewById(R.id.main_load);
+        mProgress = new ProgressDialog(this);
+        mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgress.setTitle("Google Play");
+        mProgress.setCancelable(false);
     }
 
     private void setClickListener() {
@@ -55,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void showProgress() {
-        mProgress.setVisibility(View.VISIBLE);
+        mProgress.show();
     }
 
     @Override
     public void hideProgress() {
-        mProgress.setVisibility(View.GONE);
+        mProgress.dismiss();
     }
 
     @Override
