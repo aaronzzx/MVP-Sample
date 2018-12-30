@@ -3,7 +3,6 @@ package com.aaron.mvpsample.view;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,19 +40,11 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     }
 
     private void setClickListener() {
-        mSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String data = getInput();
-                mMainPresenter.saveData(MainActivity.this, data);
-            }
+        mSave.setOnClickListener(v -> {
+            String data = getInput();
+            mMainPresenter.saveData(MainActivity.this, data);
         });
-        mLoad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMainPresenter.showData(MainActivity.this);
-            }
-        });
+        mLoad.setOnClickListener(v -> mMainPresenter.showData(MainActivity.this));
     }
 
     @Override
