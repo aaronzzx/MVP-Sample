@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aaron.mvpsample.R;
 import com.aaron.mvpsample.presenter.IMainPresenter;
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             mMainPresenter.saveData(MainActivity.this, data);
         });
         mLoad.setOnClickListener(v -> mMainPresenter.showData(MainActivity.this));
+    }
+
+    @Override
+    public void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

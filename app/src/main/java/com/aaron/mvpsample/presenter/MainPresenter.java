@@ -3,7 +3,6 @@ package com.aaron.mvpsample.presenter;
 import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.aaron.mvpsample.model.IMainModel;
 import com.aaron.mvpsample.model.MainModel;
@@ -28,26 +27,20 @@ public class MainPresenter implements IMainPresenter {
         mMainModel.load(context, new RequestListener() {
             @Override
             public void onSuccess(final String data) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mMainView.hideProgress();
-                        mMainView.load(data);
-                        Toast.makeText(context, "加载完成", Toast.LENGTH_SHORT).show();
-                        mMainView.clearInput();
-                        mMainModel.clearData(context);
-                    }
+                mHandler.post(() -> {
+                    mMainView.hideProgress();
+                    mMainView.load(data);
+                    mMainView.showToast("加载完成");
+                    mMainView.clearInput();
+                    mMainModel.clearData(context);
                 });
             }
 
             @Override
             public void onFailed() {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mMainView.hideProgress();
-                        Toast.makeText(context, "查找不到信息,请先存储数据", Toast.LENGTH_SHORT).show();
-                    }
+                mHandler.post(() -> {
+                    mMainView.hideProgress();
+                    mMainView.showToast("查找不到信息,请先存储数据");
                 });
             }
         });
@@ -56,15 +49,10 @@ public class MainPresenter implements IMainPresenter {
     @Override
     public void saveData(final Context context, String data) {
         if (TextUtils.isEmpty(data)) {
-            Toast.makeText(context, "请输入内容后再保存", Toast.LENGTH_SHORT).show();
+            mMainView.showToast("请输入内容后再保存");
             return;
         }
         mMainModel.save(context, data);
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(context, "已保存", Toast.LENGTH_SHORT).show();
-            }
-        });
+        mHandler.post(() -> mMainView.showToast("已保存"));
     }
 }
