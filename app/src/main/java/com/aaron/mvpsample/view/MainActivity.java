@@ -12,6 +12,9 @@ import com.aaron.mvpsample.R;
 import com.aaron.mvpsample.presenter.IMainPresenter;
 import com.aaron.mvpsample.presenter.MainPresenter;
 
+/**
+ * MVP Sample
+ */
 public class MainActivity extends AppCompatActivity implements IMainView {
 
     private IMainPresenter mMainPresenter;
