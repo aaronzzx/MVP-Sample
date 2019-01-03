@@ -7,6 +7,9 @@ import android.text.TextUtils;
 
 public class MainModel implements IMainModel {
 
+    /**
+     * 保存数据
+     */
     @Override
     public void save(final Context context, final String data) {
         new Thread(() -> {
