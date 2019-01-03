@@ -20,6 +20,9 @@ public class MainModel implements IMainModel {
         }).start();
     }
 
+    /**
+     * 加载数据
+     */
     @Override
     public void load(final Context context, final RequestListener listener) {
         new Thread(() -> {
