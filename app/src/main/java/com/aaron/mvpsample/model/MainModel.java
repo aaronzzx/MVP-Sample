@@ -42,6 +42,9 @@ public class MainModel implements IMainModel {
         }).start();
     }
 
+    /**
+     * 添加注释
+     */
     @Override
     public void clearData(final Context context) {
         @SuppressLint("CommitPrefEdits")
